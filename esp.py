@@ -20,7 +20,6 @@ def replace_shortcut(shortcut, replacement):
     pyperclip.copy(replacement)
     keyboard.press_and_release('ctrl+v')
 
-# This function will be called whenever a key is pressed
 def on_key_event(event):
 
     if event.event_type == keyboard.KEY_DOWN:
