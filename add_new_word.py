@@ -5,7 +5,7 @@ import os
 
 os.system(f'git pull')
 
-config_file = r'C:\Users\mulig\Documents\git\meta-repo\repos\espanso-config\config.json'
+config_file = r'C:\Users\mulig\Documents\git\meta-repo\repos\esp\config.json'
 
 with open(config_file, 'r') as file:
     data = json.load(file)
