@@ -11,7 +11,7 @@ with open('config.json', 'r') as file:
 
 def replace_shortcut(shortcut, replacement):
 
-    print(f"replacing {shortcut} with {replacement}")
+    #print(f"replacing {shortcut} with {replacement}")
 
     for _ in range(len(shortcut)):
         sleep(0.02)  # Short delay between backspaces
@@ -27,7 +27,7 @@ def on_key_event(event):
 
         if key in ["ctrl", "enter", "alt", "tab"]:
             G.reset()
-            print("resetting")
+            #print("resetting")
         elif key == "backspace":
             G.typed_keys = G.typed_keys[:-1]
             G.idle_time = 0
@@ -38,22 +38,22 @@ def on_key_event(event):
             G.typed_keys += " "
 
         if key == "space":
-            print('checking if' + " '" + G.typed_keys + "' " + 'matches anything')
+            #print('checking if' + " '" + G.typed_keys + "' " + 'matches anything')
             for shortcut, replacement in shortcuts.items():
                 if G.typed_keys == shortcut:
-                    print("Found match")
+                    #print("Found match")
                     replace_shortcut(shortcut, replacement)
                     break
             G.reset()
 
 keyboard.hook(on_key_event)
 
-print("Text Expander running... Press Ctrl+C to exit.")
+#print("Text Expander running... Press Ctrl+C to exit.")
 while True:
     G.idle_time += 1
     sleep(1)
 
     if G.idle_time >= 4:
-        print("idle")
+        #print("idle")
         G.typed_keys = ""
         G.idle_time = 0
