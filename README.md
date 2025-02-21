@@ -1,16 +1,20 @@
-# install
+# Esp
 
-[Download](https://github.com/espanso/espanso/releases)
-
+Like [Espanso](https://github.com/espanso/espanso), but less fancy, and written in python.
 
 # Setup
 
-stop espanso
+Install `Node` and `Python`.
 
-then do:
-open admin terminal (win+x)
+Then install these packages:
 
-```cmd
-rmdir /S /Q "C:\Users\mulig\AppData\Roaming\espanso"
-mklink /D "C:\Users\mulig\AppData\Roaming\espanso" "C:\Users\mulig\Documents\git\meta-repo\repos\espanso-config"
+```sh
+npm install -g nodemon
+
+pip install keyboard
+pip install pyperclip
 ```
+
+# Run
+
+then run `./start_esp.bat`
