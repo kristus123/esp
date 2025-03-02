@@ -9,21 +9,28 @@ with open('config.json', 'r') as file:
     shortcuts = json.load(file)
 
 
-def replace_shortcut(shortcut, replacement):
+def replace_shortcut(shortcut, replacement, key):
 
     #print(f"replacing {shortcut} with {replacement}")
 
-    for _ in range(len(shortcut)):
+    for _ in range(len(shortcut) + 1): # +1 to accompany for the extra space
         sleep(0.02)  # Short delay between backspaces
         keyboard.press_and_release('backspace')
         
     pyperclip.copy(replacement)
     keyboard.press_and_release('ctrl+v')
+    
+    sleep(0.05)
+    if key == " ":
+        keyboard.press_and_release("space")
+    elif key == ".":
+        keyboard.press_and_release(".")
 
 def on_key_event(event):
 
     if event.event_type == keyboard.KEY_DOWN:
         key = event.name
+        
 
         if key in ["ctrl", "enter", "alt", "tab"]:
             G.reset()
@@ -38,11 +45,13 @@ def on_key_event(event):
             G.typed_keys += " "
 
         if key == "space":
+            key = " "
+        if key == " " or key == ".":
             #print('checking if' + " '" + G.typed_keys + "' " + 'matches anything')
             for shortcut, replacement in shortcuts.items():
-                if G.typed_keys == shortcut:
+                if G.typed_keys == shortcut + key:
                     #print("Found match")
-                    replace_shortcut(shortcut, replacement)
+                    replace_shortcut(shortcut, replacement, key)
                     break
             G.reset()
 
