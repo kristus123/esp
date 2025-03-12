@@ -58,11 +58,16 @@ def on_key_event(event):
 keyboard.hook(on_key_event)
 
 #print("Text Expander running... Press Ctrl+C to exit.")
-while True:
-    G.idle_time += 1
-    sleep(1)
+try:
+    while True:
+        G.idle_time += 1
+        sleep(1)
 
-    if G.idle_time >= 4:
-        #print("idle")
-        G.typed_keys = ""
-        G.idle_time = 0
+        if G.idle_time >= 4:
+            print("idle")
+            G.typed_keys = ""
+            G.idle_time = 0
+except:
+    print("Exiting...")
+finally:
+    keyboard.unhook_all()  # Unhooks all keyboard listeners before the program exits.
