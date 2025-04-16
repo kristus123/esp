@@ -15,7 +15,7 @@ word = prompt(text='word', default=pyperclip.paste())
 while True:
     t = prompt(text='trigger (shortcut)', default='')
     if t:
-        data[t + " "] = word + " "
+        data[t + " "] = word
     else:
         break
 
@@ -24,6 +24,4 @@ sorted_data = {k: data[k] for k in sorted(data, key=len, reverse=True)}
 
 with open(config_file, 'w') as file:
     json.dump(sorted_data, file, indent=4)
-
-
 os.system(f'git add . & git commit -m "added {word}" & git push')
