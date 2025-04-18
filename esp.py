@@ -14,13 +14,13 @@ def replace_shortcut(shortcut, replacement, key):
     #print(f"replacing {shortcut} with {replacement}")
 
     for _ in range(len(shortcut) + 1): # +1 to accompany for the extra space
-        sleep(0.02)  # Short delay between backspaces
+        sleep(0.05)  # Short delay between backspaces
         keyboard.press_and_release('backspace')
         
     pyperclip.copy(replacement)
     keyboard.press_and_release('ctrl+v')
     
-    sleep(0.05)
+    sleep(0.1)
     if key == " ":
         keyboard.press_and_release("space")
     elif key == ".":
@@ -34,7 +34,6 @@ def on_key_event(event):
 
         if key in ["ctrl", "enter", "alt", "tab"]:
             G.reset()
-            #print("resetting")
         elif key == "backspace":
             G.typed_keys = G.typed_keys[:-1]
             G.idle_time = 0
